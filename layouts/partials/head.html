@@ -38,13 +38,9 @@
     {{ end }}
 {{ end }}
 
-{{ with index .Site.Data "chunky-poster" }}
-    {{ range $vendor := .assets }}
-        {{ if $vendor.css }}
-            <link rel="stylesheet" href="{{ print "dist/" $vendor.css | relURL }}">
-        {{ end }}
-    {{ end }}
-{{ end }}
+{{ $sass := resources.Get "scss/styles.scss" }}
+{{ $style := $sass | resources.ToCSS }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
 {{ range .Site.Params.customCSS -}}
     <link rel="stylesheet" href="{{ "css/" | relURL }}{{ . }}">
