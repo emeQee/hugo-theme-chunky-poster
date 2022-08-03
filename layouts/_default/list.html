@@ -21,5 +21,22 @@
             </div>
         {{ end }}
     </div>
+    
+    {{- if .Params.comments -}}
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            {{ template "_internal/disqus.html" . }}
+        </div>
+    </div>
+
+    {{- if .Site.Params.commento.enable -}}
+    <div class="row justify-content-center my-3">
+        <div class="col-lg-8">
+            <div id="commento"></div>
+            <script src="{{ .Site.Params.commento.url }}"></script>
+        </div>
+    </div>
+    {{- end -}}
+    {{- end -}}
 </main>
 {{ end }}
